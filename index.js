@@ -24,8 +24,15 @@ async function run() {
             const cursor = databaseCollection.find(query);
             const product = await cursor.toArray();
             res.send(product);
+        });
 
-        })
+        // Post Data -> Add new Api data //
+        app.post('./productapi', async (req, res) => {
+            const newProduct = req.body;
+            const result = await databaseCollection.insertOne(newProduct);
+            res.send(result);
+        });
+
     }
 
     finally {
