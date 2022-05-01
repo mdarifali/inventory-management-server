@@ -27,7 +27,7 @@ async function run() {
         });
 
         // Post Data -> Add new Api data //
-        app.post('./productapi', async (req, res) => {
+        app.post('./product', async (req, res) => {
             const newProduct = req.body;
             const result = await databaseCollection.insertOne(newProduct);
             res.send(result);
