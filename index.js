@@ -28,6 +28,14 @@ async function run() {
             res.send(product);
         });
 
+        // Get to Find Api id //
+        app.get('./productapi', async (req, res) => {
+            const id =  req.params.id;
+            const query = {_id: ObjectId(id)};
+            const result = await databaseCollection.findOne(query);
+            res.send(result);
+        });
+
         // Post Data -> Add new Api data //
         app.post('/productapi', async (req, res) => {
             const newProduct = req.body;
