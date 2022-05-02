@@ -29,7 +29,7 @@ async function run() {
         });
 
         // Get to Find Api id //
-        app.get('./productapi', async (req, res) => {
+        app.get('./productapi/id', async (req, res) => {
             const id =  req.params.id;
             const query = {_id: ObjectId(id)};
             const result = await databaseCollection.findOne(query);
