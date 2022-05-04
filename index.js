@@ -51,16 +51,16 @@ async function run() {
             res.send(result);
         });
 
-        // Update Api data //
-        // app.put('/productapi/:id', async (req, res) => {
-        //     const id = req.params.id;
-        //     const updatedData = req.body;
-        //     const filter = { _id: ObjectId(id) };
-        //     const options = {upsert: true};
-        //     const updatedDoc = { $set: updatedData };
-        //     const result = await databaseCollection.updateOne(filter, options, updatedDoc);
-        //     res.send(result);
-        // });
+        Update Api data //
+        app.put('/productapi/:id', async (req, res) => {
+            const id = req.params.id;
+            const updatedData = req.body;
+            const filter = { _id: ObjectId(id) };
+            const options = {upsert: true};
+            const updatedDoc = { $set: updatedData };
+            const result = await databaseCollection.updateOne(filter, options, updatedDoc);
+            res.send(result);
+        });
 
     }
 
