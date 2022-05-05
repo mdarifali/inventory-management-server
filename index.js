@@ -58,7 +58,6 @@ async function run() {
             const filter = { _id: ObjectId(id) };
             const options = { upsert: true };
             const updatedDoc = { 
-                
                 $set: { quantity: updatedData.quantity}
              };
             const result = await databaseCollection.updateOne(updatedDoc, filter, options);
