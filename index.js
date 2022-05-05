@@ -57,10 +57,10 @@ async function run() {
             const updatedData = req.body;
             const filter = { _id: ObjectId(id) };
             const options = { upsert: true };
-            const updatedDoc = { $set: {
-                stock: updatedData.stock
+            const updatedDoc = { 
                 
-            } };
+                $set: { quantity: updatedData.quantity}
+             };
             const result = await databaseCollection.updateOne(updatedDoc, filter, options);
             res.send(result);
         });
