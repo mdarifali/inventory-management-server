@@ -51,7 +51,7 @@ async function run() {
             res.send(result);
         });
 
-        // Update Api data //
+        // Update Api data server//
         app.put('/productapi/:id', async (req, res) => {
             const id = req.params.id;
             const updatedData = req.body;
