@@ -15,7 +15,7 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 async function run() {
-    
+
     try {
         await client.connect();
         const databaseCollection = client.db('inventory_database').collection('productapi');
@@ -57,10 +57,10 @@ async function run() {
             const updatedData = req.body;
             const filter = { _id: ObjectId(id) };
             const options = { upsert: true };
-            const updatedDoc = { 
-                $set: { quantity: updatedData.quantity}
+            const updateDoc = { 
+                $set: { quantity: updatedData.quantity},
              };
-            const result = await databaseCollection.updateOne(updatedDoc, filter, options);
+            const result = await databaseCollection.updateOne(filter, updateDoc, options);
             res.send(result);
         });
 
