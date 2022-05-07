@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const jwt = require('jsonwebtoken');
 const app = express();
 const port = process.env.PORT || 5000;
 const { MongoClient, ServerApiVersion } = require('mongodb');
@@ -28,6 +29,16 @@ async function run() {
             res.send(product);
         });
 
+        app.post('/login', async (req, res) => {
+            const email = req.body;
+            console.log(email);
+            const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN, {
+                expiresIn: '1d'
+            });
+            res.send({ accessToken});
+        });
+
+        // GET Email Data //
         app.get('/email', async (req, res) => {
             const email = req.query.email; 
             const query = {  email: email };
