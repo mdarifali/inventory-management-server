@@ -31,7 +31,6 @@ async function run() {
 
         app.post('/login', async (req, res) => {
             const email = req.body;
-            console.log(email);
             const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN, {
                 expiresIn: '1d'
             });
@@ -40,6 +39,8 @@ async function run() {
 
         // GET Email Data //
         app.get('/email', async (req, res) => {
+            const authHeader = req.headers.authorization;
+            console.log(authHeader);
             const email = req.query.email; 
             const query = {  email: email };
             const cursor = databaseCollection.find(query);
