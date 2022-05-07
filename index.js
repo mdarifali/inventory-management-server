@@ -29,12 +29,12 @@ async function run() {
         });
 
         app.get('/email', async (req, res) => {
-            const email = req.query.email;
-            console.log(email);
-            const query = { email: email}
+            const email = req.query.email; 
+            console.log(email);     
+            const query = {  email: email };
             const cursor = databaseCollection.find(query);
-            const product = await cursor.toArray();
-            res.send(product);
+            const result = await cursor.toArray();
+            res.send(result);
         });
 
         // Get to Find Api id //
