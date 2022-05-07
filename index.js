@@ -28,6 +28,15 @@ async function run() {
             res.send(product);
         });
 
+        app.get('/email', async (req, res) => {
+            const email = req.query.email;
+            console.log(email);
+            const query = { email: email}
+            const cursor = databaseCollection.find(query);
+            const product = await cursor.toArray();
+            res.send(product);
+        });
+
         // Get to Find Api id //
         app.get('/productapi/:id', async (req, res) => {
             const id =  req.params.id;
