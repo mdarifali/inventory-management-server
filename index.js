@@ -11,6 +11,17 @@ require('dotenv').config();
 app.use(cors());
 app.use(express.json());
 
+function verifyApiJwt (req, res, next){
+    const authHeader = req.headers.authorization;
+    console.log(authHeader);
+    if (!authHeader) {
+        console.log('api veryfy', authHeader);
+    }
+    console.log('jwt verify', authHeader);
+    next();
+
+}
+
 // Mongo_DB Database Connections Code//
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.053o8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
@@ -38,9 +49,7 @@ async function run() {
         });
 
         // GET Email Data //
-        app.get('/email', async (req, res) => {
-            const authHeader = req.headers.authorization;
-            console.log(authHeader);
+        app.get('/email', verifyApiJwt, async (req, res) => {
             const email = req.query.email; 
             const query = {  email: email };
             const cursor = databaseCollection.find(query);
