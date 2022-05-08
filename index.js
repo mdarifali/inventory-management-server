@@ -13,7 +13,6 @@ app.use(express.json());
 
 function verifyApiJwt (req, res, next){
     const authHeader = req.headers.authorization;
-    console.log(authHeader);
     if (!authHeader) {
         console.log('api veryfy', authHeader);
     }
